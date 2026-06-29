@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابه عمل تحصيل الغاز الطبيعي</title>
-    <!-- إدراج الأيقونة للمتصفح وللشاشة الرئيسية عند التثبيت -->
+    <title>منصة عمل تحصيل الغاز الطبيعي</title>
+    
     <link rel="icon" type="image/png" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     <link rel="apple-touch-icon" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     
-    <!-- تضمين Tailwind CSS للتصميم السريع والمتجاوب -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- تضمين مكتبة الأيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- font Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -23,33 +20,44 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 min-h-screen flex flex-col justify-between text-slate-100">
+<body class="bg-slate-900 min-h-screen flex flex-col justify-between text-slate-100 relative">
 
-    <!-- الهيدر (العنوان الرئيسي بطابع مستقبلي) -->
+    <div id="notificationModal" class="fixed top-4 left-4 z-50 max-w-xl w-[90vw] md:w-[480px] pointer-events-none animate-pulse">
+        <div class="pointer-events-auto bg-red-600 border-2 border-red-700 rounded-2xl p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex items-center gap-5 relative overflow-hidden">
+            
+            <div id="modalIconContainer" class="flex-shrink-0 w-16 h-16 bg-white/20 text-white rounded-2xl flex items-center justify-center text-4xl border border-white/30 shadow-inner">
+                <i id="modalIcon" class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            
+            <div class="flex-grow text-right pl-8">
+                <h3 id="modalTitle" class="text-2xl font-black text-white tracking-wide leading-tight">جاري تحديث البيانات...</h3>
+                <p id="modalBody" class="text-base font-bold text-white leading-relaxed mt-2">يتم الآن جلب آخر التنبيهات الحية للإدارة...</p>
+            </div>
+            
+            <button onclick="closeModal()" class="absolute top-3 left-3 text-white hover:bg-black/20 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/20 active:scale-90">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+    </div>
+
     <header class="bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 text-white py-10 px-4 shadow-2xl text-center rounded-b-3xl border-b-4 border-blue-500/50">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <!-- الشعار الرئيسي -->
             <img src="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png" alt="شعار المنصة" class="w-24 h-24 object-cover mb-4 rounded-full border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-            <!-- عنوان عريض وضخم -->
             <h1 class="text-3xl md:text-4xl font-black tracking-normal leading-tight px-2 drop-shadow-[0_2px_8px_rgba(59,130,246,0.4)]">
-                بوابة عمل تحصيل الغاز الطبيعي
+                منصة عمل تحصيل الغاز الطبيعي
             </h1>
-            <!-- العنوان الفرعي -->
             <p class="text-sm md:text-base text-blue-200 mt-3 font-medium bg-blue-950/60 border border-blue-500/30 px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
                 جميع الحقوق محفوظة 2026 تصميم م / أحمد عادل فوده
             </p>
         </div>
     </header>
 
-    <!-- القسم الرئيسي للكروت - بخلفيات زرقاء مستقبلية ووضع روابط مباشرة -->
     <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full flex items-center">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
 
-            <!-- كارت 1: الحضور والانصراف -->
             <a href="https://script.google.com/macros/s/AKfycbzhEEuQsvTOJITMHjAVPGFG0rpKOVSA-u188g5EidQM7A1OlJivvOkV4VTFzJYr1H5c/exec" target="_blank" 
                class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[190px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <!-- أيقونة دائرية مستقبلية -->
                 <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
@@ -57,11 +65,9 @@
                 <p class="text-xs text-blue-100/80 mt-1">تسجيل الحضور اليومي للمحصلين والموظفين</p>
             </a>
 
-            <!-- كارت 2: إرسال بيانات التقرير (النموذج) -->
             <a href="https://script.google.com/macros/s/AKfycbyK3J4yu9kmIrRCS1MN-zZUZ9kvrw5BhFapL54AEUEvwNuAQtMIZM9qBnFpycIzqQ5hTA/exec" target="_blank" 
                class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[190px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <!-- أيقونة دائرية مستقبلية -->
                 <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
@@ -69,11 +75,9 @@
                 <p class="text-xs text-blue-100/80 mt-1">رفع وتحديث قراءات العدادات والتحصيل للشبكة</p>
             </a>
 
-            <!-- كارت 3: الاتصال بالعملاء -->
-            <a href="https://script.google.com/macros/s/AKfycbyO0ixXLeAkrBzNj74B5iCQ2s3JfKep0pqCI47w9OVlumai-gl2RJBxqFvqUYGvFKkK/exec" target="_blank" 
+            <a href="https://script.google.com/macros/s/AKfycbyK3J4yu9kmIrRCS1MN-zZUZ9kvrw5BhFapL54AEUEvwNuAQtMIZM9qBnFpycIzqQ5hTA/exec" target="_blank" 
                class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[190px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <!-- أيقونة دائرية مستقبلية -->
                 <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-headset"></i>
                 </div>
@@ -84,10 +88,60 @@
         </div>
     </main>
 
-    <!-- الفوتر -->
     <footer class="bg-slate-950 text-slate-500 text-center py-4 text-xs border-t border-slate-800/80">
         <p>© 2026 جميع الحقوق محفوظة | منصة عمل تحصيل الغاز الطبيعي</p>
     </footer>
 
+    <script>
+        const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxlgb04MrwE6EPMm_eNF33yr7rD9u6KtulIfIaBBSR59DO0GgvRFbhz3_4c1Mp5Rx_uJg/exec"; 
+
+        // إطلاق الاستدعاء في نفس الفيمتو ثانية لفتح الصفحة
+        if (SHEET_API_URL && SHEET_API_URL !== "") {
+            fetchNotifications();
+        }
+
+        function fetchNotifications() {
+            fetch(SHEET_API_URL)
+                .then(response => response.json())
+                .then(data => {
+                    // إذا عاد السيرفر بـ نشط، نقوم بتحديث النصوص فوراً
+                    if (data && data.hasActiveMessage) {
+                        updateModalContent(data.title, data.message, data.type);
+                    } else {
+                        // إذا كانت الحالة غير نشطة في الشيت، نقوم بإخفاء النافذة التي فتحت تلقائياً
+                        hideModalImmediately();
+                    }
+                })
+                .catch(err => {
+                    console.error("خطأ جلب:", err);
+                    hideModalImmediately(); // إخفاء عند حدوث عطل شبكة
+                });
+        }
+
+        function updateModalContent(title, text, type) {
+            const mTitle = document.getElementById('modalTitle');
+            const mBody = document.getElementById('modalBody');
+            const icon = document.getElementById('modalIcon');
+
+            mTitle.innerText = title;
+            mBody.innerText = text;
+
+            if (type === "تحديث") {
+                icon.className = "fa-solid fa-arrows-rotate animate-spin";
+            } else if (type === "انتباه") {
+                icon.className = "fa-solid fa-triangle-exclamation";
+            } else { 
+                icon.className = "fa-solid fa-bell";
+            }
+        }
+
+        function closeModal() {
+            hideModalImmediately();
+        }
+
+        function hideModalImmediately() {
+            document.getElementById('notificationModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
