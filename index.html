@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة عمل تحصيل الغاز الطبيعي</title>
+    
     <link rel="icon" type="image/png" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     <link rel="apple-touch-icon" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     
@@ -11,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Cairo', sans-serif;
@@ -21,18 +23,18 @@
 <body class="bg-slate-900 min-h-screen flex flex-col justify-between text-slate-100 relative">
 
     <div id="notificationModal" class="fixed top-3 left-3 right-3 sm:right-auto z-50 max-w-xl md:w-[480px] pointer-events-none animate-pulse">
-        <div class="pointer-events-auto bg-red-600 border-2 border-red-700 rounded-2xl p-5 md:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex items-center gap-4 relative overflow-hidden">
+        <div class="pointer-events-auto bg-red-600 border-2 border-red-700 rounded-2xl p-6 shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex items-center gap-4 relative overflow-hidden">
             
-            <div id="modalIconContainer" class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-white/20 text-white rounded-xl flex items-center justify-center text-2xl md:text-4xl border border-white/30 shadow-inner">
+            <div id="modalIconContainer" class="flex-shrink-0 w-14 h-14 bg-white/20 text-white rounded-xl flex items-center justify-center text-3xl border border-white/30 shadow-inner">
                 <i id="modalIcon" class="fa-solid fa-triangle-exclamation"></i>
             </div>
             
-            <div class="flex-grow text-right pl-6">
-                <div class="flex flex-col gap-1 border-b border-white/20 pb-1.5 mb-1.5">
-                    <h3 id="modalTitle" class="text-lg md:text-2xl font-black text-white tracking-wide leading-tight">جاري تحديث البيانات...</h3>
-                    <span id="modalDate" class="text-[10px] md:text-xs font-bold text-red-100 bg-black/10 px-2 py-0.5 rounded-md w-fit"></span>
+            <div class="flex-grow text-right pl-6 flex flex-col gap-2">
+                <div class="flex flex-col gap-1 border-b border-white/20 pb-2">
+                    <h3 id="modalTitle" class="text-lg font-black text-white tracking-wide leading-tight">جاري تحديث البيانات...</h3>
+                    <span id="modalDate" class="text-sm font-bold text-white bg-black/15 px-2 py-0.5 rounded-md w-fit"></span>
                 </div>
-                <p id="modalBody" class="text-sm md:text-base font-black text-green-300 tracking-normal leading-relaxed">يتم الآن جلب آخر تنبيهات الإدارة...</p>
+                <p id="modalBody" class="text-lg font-black text-white tracking-normal leading-relaxed">يتم الآن جلب آخر تنبيهات الإدارة...</p>
             </div>
             
             <button onclick="closeModal()" class="absolute top-2.5 left-2.5 text-white hover:bg-black/20 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/20 active:scale-90">
@@ -41,67 +43,65 @@
         </div>
     </div>
 
-    <header class="bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 text-white py-8 md:py-10 px-4 shadow-2xl text-center rounded-b-3xl border-b-4 border-blue-500/50">
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 text-white py-10 px-4 shadow-2xl text-center rounded-b-3xl border-b-4 border-blue-500/50 mb-6">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <img src="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png" alt="شعار المنصة" class="w-20 h-20 md:w-24 md:h-24 object-cover mb-4 rounded-full border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+            <img src="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png" alt="شعار المنصة" class="w-24 h-24 object-cover mb-4 rounded-full border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-normal leading-tight px-2 drop-shadow-[0_2px_8px_rgba(59,130,246,0.4)]">
-                بوابة عمل تحصيل الغاز الطبيعي
-            </h1>
+                بوابة عمل تحصيل الغاز الطبيعي            </h1>
             <p class="text-xs sm:text-sm md:text-base text-blue-200 mt-3 font-medium bg-blue-950/60 border border-blue-500/30 px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg max-w-[90vw] md:max-w-none">
-                جميع الحقوق محفوظة 2026 تصميم م / أحمد عادل فوده
-            </p>
+                جميع الحقوق محفوظة 2026 تصميم م / أحمد عادل فوده            </p>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-6 md:py-8 flex-grow w-full flex items-center">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 w-full">
+    <main class="max-w-2xl mx-auto px-4 py-4 flex-grow w-full flex items-center">
+        <div class="grid grid-cols-1 gap-6 w-full">
             
             <a href="https://script.google.com/macros/s/AKfycbzhEEuQsvTOJITMHjAVPGFG0rpKOVSA-u188g5EidQM7A1OlJivvOkV4VTFzJYr1H5c/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-5 md:p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-1.5 md:hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px] md:min-h-[190px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_6px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.6)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[210px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-lg md:text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-16 h-16 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-4 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
-                <h2 class="text-base md:text-lg font-bold text-white tracking-wide">الحضور والانصراف</h2>
-                <p class="text-[11px] md:text-xs text-blue-100/80 mt-1">تسجيل الحضور اليومي للموظفين</p>
+                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">الحضور والانصراف</h2>
+                <p class="text-sm text-blue-100/90 mt-2 font-bold">تسجيل الحضور اليومي للموظفين</p>
             </a>
 
             <a href="https://script.google.com/macros/s/AKfycbyK3J4yu9kmIrRCS1MN-zZUZ9kvrw5BhFapL54AEUEvwNuAQtMIZM9qBnFpycIzqQ5hTA/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-5 md:p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-1.5 md:hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px] md:min-h-[190px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_6px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.6)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[210px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-lg md:text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-16 h-16 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-4 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
-                <h2 class="text-base md:text-lg font-bold text-white tracking-wide">إرسال بيانات التقرير (النموذج)</h2>
-                <p class="text-[11px] md:text-xs text-blue-100/80 mt-1">رفع وتحديث قراءات العدادات والتحصيل للشبكة</p>
+                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">إرسال بيانات التقرير (النموذج)</h2>
+                <p class="text-sm text-blue-100/90 mt-2 font-bold">رفع وتحديث قراءات العدادات والتحصيل للشبكة</p>
             </a>
 
             <a href="https://script.google.com/macros/s/AKfycbyO0ixXLeAkrBzNj74B5iCQ2s3JfKep0pqCI47w9OVlumai-gl2RJBxqFvqUYGvFKkK/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-5 md:p-6 rounded-2xl border border-blue-400/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-1.5 md:hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] active:scale-95 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px] md:min-h-[190px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_6px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.6)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[210px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-lg md:text-xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-16 h-16 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-4 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                <h2 class="text-base md:text-lg font-bold text-white tracking-wide">الاتصال بالعملاء</h2>
-                <p class="text-[11px] md:text-xs text-blue-100/80 mt-1">فتح منظومة التواصل أو روابط اتصالات العملاء</p>
+                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">الاتصال بالعملاء</h2>
+                <p class="text-sm text-blue-100/90 mt-2 font-bold">فتح منظومة التواصل أو روابط اتصالات العملاء</p>
             </a>
 
         </div>
     </main>
 
-    <footer class="bg-slate-950 text-slate-500 text-center py-4 text-[11px] md:text-xs border-t border-slate-800/80 px-2">
+    <footer class="bg-slate-950 text-slate-500 text-center py-5 text-[11px] md:text-xs border-t border-slate-800/80 px-2 mt-6">
         <p>© 2026 جميع الحقوق محفوظة | بوابة عمل تحصيل الغاز الطبيعي</p>
     </footer>
 
     <script>
         const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxlgb04MrwE6EPMm_eNF33yr7rD9u6KtulIfIaBBSR59DO0GgvRFbhz3_4c1Mp5Rx_uJg/exec"; 
 
-        // معالجة التاريخ واليوم وإضافته فوراً للنافذة
+        // معالجة وإدراج التاريخ الحالي فورياً باللغة العربية
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('modalDate').innerText = today.toLocaleDateString('ar-EG', options);
 
-        // إطلاق الاستدعاء فائق السرعة
+        // جلب التنبيهات من السيرفر بسرعة قصوى مباشرة
         if (SHEET_API_URL && SHEET_API_URL !== "") {
             fetchNotifications();
         }
@@ -117,7 +117,7 @@
                     }
                 })
                 .catch(err => {
-                    console.error("خطأ جلب:", err);
+                    console.error("خطأ جلب البيانات:", err);
                     hideModalImmediately();
                 });
         }
