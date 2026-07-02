@@ -34,6 +34,7 @@
         </div>
     </header>
 
+    <!-- نافذة التنبيهات الإدارية النصية العادية -->
     <div id="notificationModal" class="w-full max-w-2xl mx-auto px-4 mt-6 pointer-events-none transition-all duration-300">
         <div class="pointer-events-auto bg-red-600/95 border-2 border-red-500 rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex items-center gap-5 relative overflow-hidden backdrop-blur-sm">
             
@@ -55,6 +56,56 @@
         </div>
     </div>
 
+    <!-- الزر العائم لفتح واجهة الرسائل الصوتية -->
+    <button onclick="openAudioModal()" class="fixed bottom-24 right-6 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(16,185,129,0.5)] border-2 border-emerald-400 z-50 cursor-pointer transition-transform active:scale-90 animate-bounce">
+        <i class="fa-solid fa-microphone-lines"></i>
+    </button>
+
+    <!-- الشاشة المنبثقة للمحادثات الصوتية (إرسال واستقبال) -->
+    <div id="audioChatModal" class="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 hidden backdrop-blur-sm">
+        <div class="bg-slate-800 border-2 border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative flex flex-col gap-4 text-right">
+            
+            <button onclick="closeAudioModal()" class="absolute top-3 left-3 text-slate-400 hover:text-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-700 hover:bg-slate-700 transition-all cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-black text-emerald-400 border-b border-slate-700 pb-2 flex items-center gap-2">
+                <i class="fa-solid fa-comments-audio"></i> التوجيهات والمحادثات الصوتية
+            </h3>
+
+            <!-- صندوق استماع التوجيهات الصوتية المستلمة -->
+            <div class="bg-slate-900 border border-slate-700 rounded-xl p-4 flex flex-col gap-2">
+                <span class="text-xs font-bold text-slate-400 block">آخر تعليمات صوتية مستلمة:</span>
+                <div id="latestAudioContainer" class="flex flex-col gap-2 max-h-40 overflow-y-auto">
+                    <p id="noAudioTxt" class="text-sm text-slate-500 text-center py-2">لا توجد رسائل صوتية جديدة حالياً</p>
+                </div>
+            </div>
+
+            <!-- قسم تسجيل وإرسال الرسالة الصوتية -->
+            <div class="flex flex-col gap-3 mt-2">
+                <label class="text-xs font-bold text-slate-400">إرسال التوجيه الصوتي إلى:</label>
+                <select id="audioTarget" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm font-bold text-slate-200 focus:outline-none focus:border-emerald-500">
+                    <option value="الكل (جروب)">الكل (مجموعة العمل)</option>
+                    <option value="المدير">المدير العام</option>
+                    <option value="مكتب التحصيل">مكتب التحصيل</option>
+                </select>
+
+                <div class="flex flex-col items-center justify-center py-4 bg-slate-900/50 border border-dashed border-slate-700 rounded-xl gap-3">
+                    <button id="recordBtn" onclick="toggleRecording()" class="w-16 h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-emerald-400 cursor-pointer transition-all duration-300">
+                        <i id="micIcon" class="fa-solid fa-microphone"></i>
+                    </button>
+                    <span id="recordStatus" class="text-xs font-bold text-slate-400">اضغط على المايك لبدء التسجيل</span>
+                    <audio id="audioPreview" controls class="hidden w-[90%] mt-2 h-8"></audio>
+                </div>
+
+                <button id="sendAudioBtn" onclick="uploadAudioMessage()" disabled class="w-full bg-slate-700 text-slate-400 font-black py-3 rounded-xl cursor-not-allowed transition-all shadow-md">
+                    <i class="fa-solid fa-paper-plane pl-2 ml-1"></i> إرسال التسجيل الصوتي
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- كروت الاختيارات الرئيسية للبوابة -->
     <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full flex items-center">
         <div class="grid grid-cols-1 gap-6 w-full">
             
@@ -98,13 +149,15 @@
     <script>
         const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxlgb04MrwE6EPMm_eNF33yr7rD9u6KtulIfIaBBSR59DO0GgvRFbhz3_4c1Mp5Rx_uJg/exec"; 
 
-        // معالجة وإدراج التاريخ الحقيقي واليوم
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('modalDate').innerText = today.toLocaleDateString('ar-EG', options);
 
         if (SHEET_API_URL && SHEET_API_URL !== "") {
             fetchNotifications();
+            fetchAudioMessages();
+            // جلب أحدث الرسائل الصوتية تلقائياً كل 30 ثانية
+            setInterval(fetchAudioMessages, 30000);
         }
 
         function fetchNotifications() {
@@ -146,6 +199,128 @@
 
         function hideModalImmediately() {
             document.getElementById('notificationModal').classList.add('hidden');
+        }
+
+        // ==========================================
+        // أكواد إدارة نظام المحادثات والتسجيلات الصوتية
+        // ==========================================
+        let mediaRecorder;
+        let audioChunks = [];
+        let isRecording = false;
+        let audioBlob = null;
+
+        function openAudioModal() {
+            document.getElementById('audioChatModal').classList.remove('hidden');
+        }
+
+        function closeAudioModal() {
+            document.getElementById('audioChatModal').classList.add('hidden');
+        }
+
+        async function toggleRecording() {
+            const recBtn = document.getElementById('recordBtn');
+            const micIcon = document.getElementById('micIcon');
+            const status = document.getElementById('recordStatus');
+
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = e => {
+                        audioChunks.push(e.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                        const preview = document.getElementById('audioPreview');
+                        preview.src = URL.createObjectURL(audioBlob);
+                        preview.classList.remove('hidden');
+                        
+                        const sendBtn = document.getElementById('sendAudioBtn');
+                        sendBtn.disabled = false;
+                        sendBtn.className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-xl cursor-pointer transition-all shadow-md active:scale-95";
+                    };
+
+                    mediaRecorder.start();
+                    isRecording = true;
+                    recBtn.className = "w-16 h-16 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-red-400 cursor-pointer animate-pulse";
+                    micIcon.className = "fa-solid fa-stop";
+                    status.innerText = "جاري التسجيل الآن... اضغط مجدداً للإيقاف";
+                } catch (err) {
+                    alert("نأمل إتاحة صلاحية المايك للمتصفح أولاً حتى تتمكن من التسجيل.");
+                }
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                recBtn.className = "w-16 h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-emerald-400 cursor-pointer";
+                micIcon.className = "fa-solid fa-microphone";
+                status.innerText = "تم الحفظ المعاين، يمكنك الاستماع أو الإرسال فوراً";
+            }
+        }
+
+        function uploadAudioMessage() {
+            if (!audioBlob) return;
+            const status = document.getElementById('recordStatus');
+            status.innerText = "جاري المعالجة ورفع الملف الصوتي للشبكة...";
+
+            let reader = new FileReader();
+            reader.readAsDataURL(audioBlob);
+            reader.onloadend = function() {
+                let base64Data = reader.result.split(',')[1];
+                let target = document.getElementById('audioTarget').value;
+
+                let payload = {
+                    action: "uploadAudio",
+                    target: target,
+                    audioData: base64Data
+                };
+
+                fetch(SHEET_API_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(resData => {
+                    if(resData.success) {
+                        status.innerText = "تم إرسال الملف الصوتي للتوجيهات بنجاح! ✅";
+                        document.getElementById('audioPreview').classList.add('hidden');
+                        document.getElementById('sendAudioBtn').disabled = true;
+                        document.getElementById('sendAudioBtn').className = "w-full bg-slate-700 text-slate-400 font-black py-3 rounded-xl cursor-not-allowed transition-all shadow-md";
+                        audioBlob = null;
+                        fetchAudioMessages(); 
+                    } else {
+                        status.innerText = "فشلت العملية، يرجى إعادة المحاولة.";
+                    }
+                })
+                .catch(err => {
+                    status.innerText = "خطأ في الاتصال بالشبكة الخادم.";
+                });
+            };
+        }
+
+        function fetchAudioMessages() {
+            fetch(`${SHEET_API_URL}?action=getAudios`)
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('latestAudioContainer');
+                if (data && data.length > 0) {
+                    container.innerHTML = "";
+                    data.forEach(msg => {
+                        let audioDiv = document.createElement('div');
+                        audioDiv.className = "bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-1 flex flex-col gap-1";
+                        audioDiv.innerHTML = `
+                            <div class="flex justify-between text-[11px] text-slate-400 font-bold">
+                                <span>موجه إلى: <b class="text-emerald-400">${msg.target}</b></span>
+                                <span>${msg.date}</span>
+                            </div>
+                            <audio controls src="${msg.url}" class="w-full h-8 mt-1"></audio>
+                        `;
+                        container.appendChild(audioDiv);
+                    });
+                }
+            }).catch(e => console.log("خطأ جلب تحديث الصوتيات"));
         }
     </script>
 </body>
