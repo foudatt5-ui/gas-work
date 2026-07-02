@@ -34,7 +34,6 @@
         </div>
     </header>
 
-    <!-- نافذة التنبيهات الإدارية النصية العادية -->
     <div id="notificationModal" class="w-full max-w-2xl mx-auto px-4 mt-6 pointer-events-none transition-all duration-300">
         <div class="pointer-events-auto bg-red-600/95 border-2 border-red-500 rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex items-center gap-5 relative overflow-hidden backdrop-blur-sm">
             
@@ -56,12 +55,10 @@
         </div>
     </div>
 
-    <!-- الزر العائم لفتح واجهة الرسائل الصوتية -->
     <button onclick="openAudioModal()" class="fixed bottom-24 right-6 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(16,185,129,0.5)] border-2 border-emerald-400 z-50 cursor-pointer transition-transform active:scale-90 animate-bounce">
         <i class="fa-solid fa-microphone-lines"></i>
     </button>
 
-    <!-- الشاشة المنبثقة للمحادثات الصوتية (إرسال واستقبال) -->
     <div id="audioChatModal" class="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 hidden backdrop-blur-sm">
         <div class="bg-slate-800 border-2 border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative flex flex-col gap-4 text-right">
             
@@ -73,7 +70,6 @@
                 <i class="fa-solid fa-comments-audio"></i> التوجيهات والمحادثات الصوتية
             </h3>
 
-            <!-- صندوق استماع التوجيهات الصوتية المستلمة -->
             <div class="bg-slate-900 border border-slate-700 rounded-xl p-4 flex flex-col gap-2">
                 <span class="text-xs font-bold text-slate-400 block">آخر تعليمات صوتية مستلمة:</span>
                 <div id="latestAudioContainer" class="flex flex-col gap-2 max-h-40 overflow-y-auto">
@@ -81,7 +77,6 @@
                 </div>
             </div>
 
-            <!-- قسم تسجيل وإرسال الرسالة الصوتية -->
             <div class="flex flex-col gap-3 mt-2">
                 <label class="text-xs font-bold text-slate-400">إرسال التوجيه الصوتي إلى:</label>
                 <select id="audioTarget" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm font-bold text-slate-200 focus:outline-none focus:border-emerald-500">
@@ -105,7 +100,6 @@
         </div>
     </div>
 
-    <!-- كروت الاختيارات الرئيسية للبوابة -->
     <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full flex items-center">
         <div class="grid grid-cols-1 gap-6 w-full">
             
@@ -147,6 +141,7 @@
     </footer>
 
     <script>
+        // ضع رابط الـ Web App الخاص بك هنا بعد إجراء الـ Deploy
         const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxlgb04MrwE6EPMm_eNF33yr7rD9u6KtulIfIaBBSR59DO0GgvRFbhz3_4c1Mp5Rx_uJg/exec"; 
 
         const today = new Date();
@@ -291,11 +286,13 @@
                         audioBlob = null;
                         fetchAudioMessages(); 
                     } else {
-                        status.innerText = "فشلت العملية، يرجى إعادة المحاولة.";
+                        status.innerText = "فشل السيرفر: " + resData.error;
+                        console.error("جوجل سكريبت أرسل خطأ:", resData.error);
                     }
                 })
                 .catch(err => {
-                    status.innerText = "خطأ في الاتصال بالشبكة الخادم.";
+                    status.innerText = "خطأ اتصال: تأكد من عمل New Version للسكريبت عند النشر.";
+                    console.error("خطأ في الاتصال بالشبكة:", err);
                 });
             };
         }
@@ -315,7 +312,7 @@
                                 <span>موجه إلى: <b class="text-emerald-400">${msg.target}</b></span>
                                 <span>${msg.date}</span>
                             </div>
-                            <audio controls src="${msg.url}" class="w-full h-8 mt-1"></audio>
+                            <audio controls src="${msg.url}" class="w-full h-8 mt-1" preload="none"></audio>
                         `;
                         container.appendChild(audioDiv);
                     });
