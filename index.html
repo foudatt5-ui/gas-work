@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة عمل تحصيل الغاز الطبيعي</title>
     
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
+    <link class="rounded-full" rel="icon" type="image/png" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     <link rel="apple-touch-icon" href="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png">
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -20,128 +20,82 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 min-h-screen flex flex-col justify-between text-slate-100 relative">
+<body class="bg-slate-900 min-h-screen flex flex-col justify-between text-slate-100 relative overflow-x-hidden">
 
-    <header class="bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 text-white py-12 px-6 shadow-2xl text-center rounded-b-[45px] border-b-4 border-blue-500/50 relative">
-        <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <img src="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png" alt="شعار المنصة" class="w-24 h-24 md:w-28 md:h-28 object-cover mb-4 rounded-full border-2 border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.6)]">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-normal leading-tight px-2 drop-shadow-[0_4px_12px_rgba(59,130,246,0.6)]">
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-950 to-blue-900 text-white py-8 px-6 shadow-2xl text-center rounded-b-[35px] border-b-4 border-blue-500/50 relative">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <img src="https://i.postimg.cc/FRmdf78L/Gemini-Generated-Image-safpb5safpb5safp.png" alt="شعار المنصة" class="w-20 h-20 md:w-24 md:h-24 object-cover mb-3 rounded-full border-2 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-normal leading-tight px-2 drop-shadow-[0_4px_10px_rgba(59,130,246,0.5)]">
                 بوابة عمل تحصيل الغاز الطبيعي
             </h1>
-            <p class="text-xs sm:text-sm md:text-base text-blue-200 mt-4 font-bold bg-blue-950/70 border border-blue-500/30 px-6 py-1.5 rounded-full backdrop-blur-md shadow-lg max-w-[90vw] md:max-w-none">
+            <p class="text-xs sm:text-sm text-blue-200 mt-3 font-bold bg-blue-950/70 border border-blue-500/30 px-5 py-1 rounded-full backdrop-blur-md shadow-lg max-w-[90vw] md:max-w-none">
                 جميع الحقوق محفوظة 2026 تصميم م / أحمد عادل فوده
             </p>
         </div>
     </header>
 
-    <div id="notificationModal" class="w-full max-w-2xl mx-auto px-4 mt-6 pointer-events-none transition-all duration-300">
-        <div class="pointer-events-auto bg-red-600/95 border-2 border-red-500 rounded-2xl p-5 shadow-[0_15px_40px_rgba(0,0,0,0.5)] flex items-center gap-5 relative overflow-hidden backdrop-blur-sm">
+    <div id="notificationModal" class="w-full max-w-4xl mx-auto px-4 mt-4 transition-all duration-300">
+        <div class="bg-red-600/95 border-2 border-red-500 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-4 relative overflow-hidden backdrop-blur-sm">
             
-            <div id="modalIconContainer" class="flex-shrink-0 w-12 h-12 bg-white/20 text-white rounded-xl flex items-center justify-center text-2xl border border-white/30 shadow-inner">
+            <div id="modalIconContainer" class="flex-shrink-0 w-10 h-10 bg-white/20 text-white rounded-lg flex items-center justify-center text-xl border border-white/30 shadow-inner">
                 <i id="modalIcon" class="fa-solid fa-triangle-exclamation"></i>
             </div>
             
-            <div class="flex-grow text-right pl-6 flex flex-col gap-1">
-                <div class="flex items-center gap-3 border-b border-white/20 pb-1.5">
-                    <h3 id="modalTitle" class="text-lg md:text-xl font-black text-white tracking-wide">جاري تحديث البيانات...</h3>
-                    <span id="modalDate" class="text-xs font-bold text-white bg-black/20 px-2.5 py-0.5 rounded"></span>
+            <div class="flex-grow text-right pl-6 flex flex-col gap-0.5">
+                <div class="flex items-center gap-3 border-b border-white/10 pb-1">
+                    <h3 id="modalTitle" class="text-base md:text-lg font-black text-white tracking-wide">جاري تحديث البيانات...</h3>
+                    <span id="modalDate" class="text-[11px] font-bold text-white bg-black/20 px-2 py-0.5 rounded"></span>
                 </div>
-                <p id="modalBody" class="text-sm md:text-base font-bold text-white/90 leading-relaxed">يتم الآن جلب آخر تنبيهات الإدارة...</p>
+                <p id="modalBody" class="text-xs md:text-sm font-bold text-white/90 leading-relaxed mt-0.5">يتم الآن جلب آخر تنبيهات الإدارة...</p>
             </div>
             
-            <button onclick="closeModal()" class="absolute top-2 left-2 text-white/80 hover:text-white hover:bg-black/25 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/10 active:scale-90">
-                <i class="fa-solid fa-xmark text-lg"></i>
+            <button onclick="closeModal()" class="absolute top-2 left-2 text-white/70 hover:text-white hover:bg-black/25 w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/10 active:scale-90">
+                <i class="fa-solid fa-xmark text-sm"></i>
             </button>
         </div>
     </div>
 
-    <button onclick="openAudioModal()" class="fixed bottom-24 right-6 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(16,185,129,0.5)] border-2 border-emerald-400 z-50 cursor-pointer transition-transform active:scale-90 animate-bounce">
-        <i class="fa-solid fa-microphone-lines"></i>
-    </button>
-
-    <div id="audioChatModal" class="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 hidden backdrop-blur-sm">
-        <div class="bg-slate-800 border-2 border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative flex flex-col gap-4 text-right">
-            
-            <button onclick="closeAudioModal()" class="absolute top-3 left-3 text-slate-400 hover:text-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-700 hover:bg-slate-700 transition-all cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <h3 class="text-xl font-black text-emerald-400 border-b border-slate-700 pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-comments-audio"></i> التوجيهات والمحادثات الصوتية
-            </h3>
-
-            <div class="bg-slate-900 border border-slate-700 rounded-xl p-4 flex flex-col gap-2">
-                <span class="text-xs font-bold text-slate-400 block">آخر تعليمات صوتية مستلمة:</span>
-                <div id="latestAudioContainer" class="flex flex-col gap-2 max-h-40 overflow-y-auto">
-                    <p id="noAudioTxt" class="text-sm text-slate-500 text-center py-2">لا توجد رسائل صوتية جديدة حالياً</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-3 mt-2">
-                <label class="text-xs font-bold text-slate-400">إرسال التوجيه الصوتي إلى:</label>
-                <select id="audioTarget" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm font-bold text-slate-200 focus:outline-none focus:border-emerald-500">
-                    <option value="الكل (جروب)">الكل (مجموعة العمل)</option>
-                    <option value="المدير">المدير العام</option>
-                    <option value="مكتب التحصيل">مكتب التحصيل</option>
-                </select>
-
-                <div class="flex flex-col items-center justify-center py-4 bg-slate-900/50 border border-dashed border-slate-700 rounded-xl gap-3">
-                    <button id="recordBtn" onclick="toggleRecording()" class="w-16 h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-emerald-400 cursor-pointer transition-all duration-300">
-                        <i id="micIcon" class="fa-solid fa-microphone"></i>
-                    </button>
-                    <span id="recordStatus" class="text-xs font-bold text-slate-400">اضغط على المايك لبدء التسجيل</span>
-                    <audio id="audioPreview" controls class="hidden w-[90%] mt-2 h-8"></audio>
-                </div>
-
-                <button id="sendAudioBtn" onclick="uploadAudioMessage()" disabled class="w-full bg-slate-700 text-slate-400 font-black py-3 rounded-xl cursor-not-allowed transition-all shadow-md">
-                    <i class="fa-solid fa-paper-plane pl-2 ml-1"></i> إرسال التسجيل الصوتي
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full flex items-center">
-        <div class="grid grid-cols-1 gap-6 w-full">
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
             
             <a href="https://script.google.com/macros/s/AKfycbzG0ZUN77LPmevBbVQN8Nb1BHC5p6lonbLFc5O6tzESijEs874iaUCuKsz8GuNmvxbU/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_8px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl border border-blue-400/40 shadow-[0_6px_20px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[140px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-2 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
-                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">الحضور والانصراف</h2>
-                <p class="text-sm text-blue-100/90 mt-1 font-bold">تسجيل الحضور اليومي للموظفين</p>
+                <h2 class="text-lg md:text-xl font-black text-white tracking-wide">الحضور والانصراف</h2>
+                <p class="text-xs text-blue-100/90 mt-1 font-bold">تسجيل الحضور اليومي للموظفين</p>
             </a>
 
             <a href="https://script.google.com/macros/s/AKfycbyK3J4yu9kmIrRCS1MN-zZUZ9kvrw5BhFapL54AEUEvwNuAQtMIZM9qBnFpycIzqQ5hTA/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_8px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl border border-blue-400/40 shadow-[0_6px_20px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[140px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-2 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
-                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">إرسال بيانات التقرير (النموذج)</h2>
-                <p class="text-sm text-blue-100/90 mt-1 font-bold">رفع وتحديث قراءات العدادات والتحصيل للشبكة</p>
+                <h2 class="text-lg md:text-xl font-black text-white tracking-wide">إرسال بيانات التقرير</h2>
+                <p class="text-xs text-blue-100/90 mt-1 font-bold">رفع وتحديث قراءات العدادات والتحصيل للشبكة</p>
             </a>
 
             <a href="https://script.google.com/macros/s/AKfycbxfan9sOjInXNisa0Tf_-jl2nUabMIy5hw4kRW4QsKvDjS7xure7eligoUB8LCwBibN/exec" target="_blank" 
-               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-2xl border border-blue-400/40 shadow-[0_8px_25px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[160px]">
+               class="group relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl border border-blue-400/40 shadow-[0_6px_20px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] active:scale-98 transition-all duration-300 text-center flex flex-col items-center justify-center min-h-[140px]">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center text-2xl mb-3 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
+                <div class="w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center text-xl mb-2 border border-white/20 group-hover:bg-white group-hover:text-blue-700 transition-all duration-300 shadow-md">
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                <h2 class="text-xl md:text-2xl font-black text-white tracking-wide">الاتصال بالعملاء</h2>
-                <p class="text-sm text-blue-100/90 mt-1 font-bold">فتح منظومة التواصل أو روابط اتصالات العملاء</p>
+                <h2 class="text-lg md:text-xl font-black text-white tracking-wide">الاتصال بالعملاء</h2>
+                <p class="text-xs text-blue-100/90 mt-1 font-bold">فتح منظومة التواصل أو روابط اتصالات العملاء</p>
             </a>
 
         </div>
     </main>
 
-    <footer class="bg-slate-950 text-slate-500 text-center py-4 text-xs border-t border-slate-800/80 px-2 mt-6">
+    <footer class="bg-slate-950 text-slate-500 text-center py-3 text-xs border-t border-slate-800/80 px-2">
         <p>© 2026 جميع الحقوق محفوظة | بوابة عمل تحصيل الغاز الطبيعي</p>
     </footer>
 
     <script>
-        // ضع رابط الـ Web App الخاص بك هنا بعد إجراء الـ Deploy
         const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxlgb04MrwE6EPMm_eNF33yr7rD9u6KtulIfIaBBSR59DO0GgvRFbhz3_4c1Mp5Rx_uJg/exec"; 
 
         const today = new Date();
@@ -150,9 +104,6 @@
 
         if (SHEET_API_URL && SHEET_API_URL !== "") {
             fetchNotifications();
-            fetchAudioMessages();
-            // جلب أحدث الرسائل الصوتية تلقائياً كل 30 ثانية
-            setInterval(fetchAudioMessages, 30000);
         }
 
         function fetchNotifications() {
@@ -194,130 +145,6 @@
 
         function hideModalImmediately() {
             document.getElementById('notificationModal').classList.add('hidden');
-        }
-
-        // ==========================================
-        // أكواد إدارة نظام المحادثات والتسجيلات الصوتية
-        // ==========================================
-        let mediaRecorder;
-        let audioChunks = [];
-        let isRecording = false;
-        let audioBlob = null;
-
-        function openAudioModal() {
-            document.getElementById('audioChatModal').classList.remove('hidden');
-        }
-
-        function closeAudioModal() {
-            document.getElementById('audioChatModal').classList.add('hidden');
-        }
-
-        async function toggleRecording() {
-            const recBtn = document.getElementById('recordBtn');
-            const micIcon = document.getElementById('micIcon');
-            const status = document.getElementById('recordStatus');
-
-            if (!isRecording) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    mediaRecorder = new MediaRecorder(stream);
-                    audioChunks = [];
-
-                    mediaRecorder.ondataavailable = e => {
-                        audioChunks.push(e.data);
-                    };
-
-                    mediaRecorder.onstop = () => {
-                        audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
-                        const preview = document.getElementById('audioPreview');
-                        preview.src = URL.createObjectURL(audioBlob);
-                        preview.classList.remove('hidden');
-                        
-                        const sendBtn = document.getElementById('sendAudioBtn');
-                        sendBtn.disabled = false;
-                        sendBtn.className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-xl cursor-pointer transition-all shadow-md active:scale-95";
-                    };
-
-                    mediaRecorder.start();
-                    isRecording = true;
-                    recBtn.className = "w-16 h-16 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-red-400 cursor-pointer animate-pulse";
-                    micIcon.className = "fa-solid fa-stop";
-                    status.innerText = "جاري التسجيل الآن... اضغط مجدداً للإيقاف";
-                } catch (err) {
-                    alert("نأمل إتاحة صلاحية المايك للمتصفح أولاً حتى تتمكن من التسجيل.");
-                }
-            } else {
-                mediaRecorder.stop();
-                isRecording = false;
-                recBtn.className = "w-16 h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-emerald-400 cursor-pointer";
-                micIcon.className = "fa-solid fa-microphone";
-                status.innerText = "تم الحفظ المعاين، يمكنك الاستماع أو الإرسال فوراً";
-            }
-        }
-
-        function uploadAudioMessage() {
-            if (!audioBlob) return;
-            const status = document.getElementById('recordStatus');
-            status.innerText = "جاري المعالجة ورفع الملف الصوتي للشبكة...";
-
-            let reader = new FileReader();
-            reader.readAsDataURL(audioBlob);
-            reader.onloadend = function() {
-                let base64Data = reader.result.split(',')[1];
-                let target = document.getElementById('audioTarget').value;
-
-                let payload = {
-                    action: "uploadAudio",
-                    target: target,
-                    audioData: base64Data
-                };
-
-                fetch(SHEET_API_URL, {
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                })
-                .then(res => res.json())
-                .then(resData => {
-                    if(resData.success) {
-                        status.innerText = "تم إرسال الملف الصوتي للتوجيهات بنجاح! ✅";
-                        document.getElementById('audioPreview').classList.add('hidden');
-                        document.getElementById('sendAudioBtn').disabled = true;
-                        document.getElementById('sendAudioBtn').className = "w-full bg-slate-700 text-slate-400 font-black py-3 rounded-xl cursor-not-allowed transition-all shadow-md";
-                        audioBlob = null;
-                        fetchAudioMessages(); 
-                    } else {
-                        status.innerText = "فشل السيرفر: " + resData.error;
-                        console.error("جوجل سكريبت أرسل خطأ:", resData.error);
-                    }
-                })
-                .catch(err => {
-                    status.innerText = "خطأ اتصال: تأكد من عمل New Version للسكريبت عند النشر.";
-                    console.error("خطأ في الاتصال بالشبكة:", err);
-                });
-            };
-        }
-
-        function fetchAudioMessages() {
-            fetch(`${SHEET_API_URL}?action=getAudios`)
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('latestAudioContainer');
-                if (data && data.length > 0) {
-                    container.innerHTML = "";
-                    data.forEach(msg => {
-                        let audioDiv = document.createElement('div');
-                        audioDiv.className = "bg-slate-800 p-2.5 rounded-lg border border-slate-700 mt-1 flex flex-col gap-1";
-                        audioDiv.innerHTML = `
-                            <div class="flex justify-between text-[11px] text-slate-400 font-bold">
-                                <span>موجه إلى: <b class="text-emerald-400">${msg.target}</b></span>
-                                <span>${msg.date}</span>
-                            </div>
-                            <audio controls src="${msg.url}" class="w-full h-8 mt-1" preload="none"></audio>
-                        `;
-                        container.appendChild(audioDiv);
-                    });
-                }
-            }).catch(e => console.log("خطأ جلب تحديث الصوتيات"));
         }
     </script>
 </body>
