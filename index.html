@@ -34,30 +34,32 @@
         </div>
     </header>
 
-    <!-- الكارت الأحمر للتنبيهات -->
+    <!-- الكارت الأحمر للتنبيهات المطور ليتوافق مع جميع الهواتف -->
     <div id="notificationModal" class="w-full max-w-4xl mx-auto px-4 mt-4 transition-all duration-300">
-        <div class="bg-red-600/95 border-2 border-red-500 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center gap-4 relative overflow-hidden backdrop-blur-sm">
+        <div class="bg-red-600/95 border-2 border-red-500 rounded-xl p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center text-center sm:text-right gap-4 relative overflow-hidden backdrop-blur-sm">
             
-            <div id="modalIconContainer" class="flex-shrink-0 w-10 h-10 bg-white/20 text-white rounded-lg flex items-center justify-center text-xl border border-white/30 shadow-inner">
+            <!-- زر الإغلاق (X) في الهواتف يتم تثبيته في الأعلى لعدم تشويه المظهر -->
+            <button onclick="closeModal()" class="absolute top-3 left-3 text-white/70 hover:text-white hover:bg-black/25 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/10 active:scale-90 z-10">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+
+            <div id="modalIconContainer" class="flex-shrink-0 w-12 h-12 bg-white/20 text-white rounded-xl flex items-center justify-center text-2xl border border-white/30 shadow-inner mx-auto sm:mx-0">
                 <i id="modalIcon" class="fa-solid fa-triangle-exclamation"></i>
             </div>
             
-            <div class="flex-grow text-right sm:pl-4 flex flex-col gap-0.5 w-full">
-                <div class="flex items-center justify-between sm:justify-start gap-3 border-b border-white/10 pb-1">
+            <div class="flex-grow flex flex-col gap-1 w-full px-2 sm:px-0">
+                <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 border-b border-white/10 pb-1.5 w-full">
                     <h3 id="modalTitle" class="text-base md:text-lg font-black text-white tracking-wide">جاري تحديث البيانات...</h3>
                     <span id="modalDate" class="text-[11px] font-bold text-white bg-black/20 px-2 py-0.5 rounded"></span>
                 </div>
-                <p id="modalBody" class="text-xs md:text-sm font-bold text-white/90 leading-relaxed mt-0.5">يتم الآن جلب آخر تنبيهات الإدارة...</p>
+                <p id="modalBody" class="text-xs md:text-sm font-bold text-white/90 leading-relaxed mt-1">يتم الآن جلب آخر تنبيهات الإدارة...</p>
             </div>
             
-            <!-- أزرار التحكم الجانبية والتوجيه المحدثة -->
-            <div class="flex items-center gap-3 self-end sm:self-center mr-auto w-full sm:w-auto justify-end">
-                <button id="btnWatched" onclick="markAsWatched()" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:from-blue-500 hover:to-indigo-600 font-black text-xs md:text-sm px-4 py-2.5 rounded-xl shadow-[0_4px_15px_rgba(30,58,138,0.5)] border border-blue-400/30 transition-all duration-300 cursor-pointer active:scale-95 flex items-center justify-center gap-2 flex-grow sm:flex-grow-0 whitespace-nowrap">
-                    <i class="fa-brands fa-whatsapp text-sm md:text-base"></i>
-                    <span>اضغط هنا لتعلم الإدارة بمشاهدتك للتعليمات والتنبيهات</span>
-                </button>
-                <button onclick="closeModal()" class="text-white/70 hover:text-white hover:bg-black/25 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 cursor-pointer border border-white/10 active:scale-90 flex-shrink-0">
-                    <i class="fa-solid fa-xmark text-sm"></i>
+            <!-- زر الاتصال بالإدارة المطور - متمركز ومتناسق كلياً مع الشاشات الصغيرة -->
+            <div class="w-full sm:w-auto flex items-center justify-center mt-2 sm:mt-0 flex-shrink-0">
+                <button id="btnWatched" onclick="markAsWatched()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white font-black text-xs md:text-sm px-5 py-3 rounded-xl shadow-[0_4px_15px_rgba(30,58,138,0.5)] border border-blue-400/30 transition-all duration-300 cursor-pointer active:scale-95 flex items-center justify-center gap-2 text-center max-w-[100%] sm:max-w-none break-words">
+                    <i class="fa-brands fa-whatsapp text-base md:text-lg"></i>
+                    <span class="leading-normal">اضغط هنا لتعلم الإدارة بمشاهدتك للتعليمات والتنبيهات</span>
                 </button>
             </div>
         </div>
@@ -165,9 +167,9 @@
         function markAsWatched() {
             const btn = document.getElementById('btnWatched');
                 
-            // 1. تغيير شكل ولون الزر فوراً إلى الأخضر الدال على الإتمام الناجح للمهمة
-            btn.className = "bg-gradient-to-r from-emerald-600 to-green-700 text-white font-black text-xs md:text-sm px-4 py-2.5 rounded-xl shadow-[0_4px_15px_rgba(16,185,129,0.4)] border border-emerald-400/30 transition-all duration-300 cursor-default pointer-events-none flex items-center justify-center gap-2 flex-grow sm:flex-grow-0 whitespace-nowrap";
-            btn.innerHTML = `<i class="fa-solid fa-circle-check text-sm md:text-base text-white animate-pulse"></i> <span>تمت المشاهدة والتوجيه للإدارة بنجاح</span>`;
+            // 1. تغيير شكل ولون الزر فوراً إلى الأخضر
+            btn.className = "w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-green-700 text-white font-black text-xs md:text-sm px-5 py-3 rounded-xl shadow-[0_4px_15px_rgba(16,185,129,0.4)] border border-emerald-400/30 transition-all duration-300 cursor-default pointer-events-none flex items-center justify-center gap-2 text-center break-words";
+            btn.innerHTML = `<i class="fa-solid fa-circle-check text-base md:text-lg text-white animate-pulse"></i> <span>تمت المشاهدة والتوجيه للإدارة بنجاح</span>`;
                 
             // 2. إرسال إشعار للـ API لحفظ حالة المشاهدة في الخلفية
             const requestUrl = `${WATCHED_API_URL}?message=${encodeURIComponent(currentActiveMessage)}&status=${encodeURIComponent("تم المشاهدة")}`;
@@ -185,7 +187,6 @@
             const textMessage = "تم مشاهدة التعليمات";
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(textMessage)}`;
             
-            // فتح الرابط في علامة تبويب جديدة لضمان عدم غلق صفحتك الحالية
             window.open(whatsappUrl, '_blank');
         }
 
